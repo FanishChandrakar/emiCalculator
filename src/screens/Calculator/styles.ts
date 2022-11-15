@@ -30,30 +30,46 @@ export default StyleSheet.create({
         flex: 1,
         textAlign: 'center',
     },
-    cardSlider_Title_View: {
+    bar: {
         flexDirection: 'row',
+        alignItems: 'center',
         paddingVertical: Spacing / 4,
         paddingHorizontal: Spacing,
         borderRadius: Spacing / 4,
         backgroundColor: Colors.appColor,
     },
-    cardSlider_Title_Text: {
+    cardSlider_Label: {
         ...Styles.T5,
-        paddingVertical: Spacing / 2,
-    },
-    cardSlider_Title_Value: {
-        flex: 1,
         ...Styles.B6,
+        color: Colors.catskillWhite,
+        textAlign: 'center',
+    },
+    bar_Value: {
         backgroundColor: Colors.appBackColor,
         borderRadius: Spacing / 4,
-        color: Colors.catskillWhite,
-        overflow: 'hidden',
-        marginHorizontal: Spacing,
-        textAlign: 'center',
+        paddingVertical: Spacing / 2,
+    },
+    get bar_L() {
+        return {
+            ...this.cardSlider_Label,
+            flex: 4,
+        };
+    },
+    get bar_C() {
+        return {
+            ...this.bar_Value,
+            flex: 5,
+        };
+    },
+    get bar_R() {
+        return {
+            ...this.cardSlider_Label,
+            flex: 1,
+        };
     },
     lineSeperator: {
         height: 2,
-        backgroundColor: Colors.catskillWhite,
+        backgroundColor: `${Colors.catskillWhite}44`,
     },
     result: {
         // flex: 1,

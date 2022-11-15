@@ -19,7 +19,7 @@ const Calculator: React.FC = () => {
     return (
         <>
             <Header Title="EMI Calculator" />
-            <View style={{...styles.cover}}>
+            <View style={styles.cover}>
                 <ScrollView bounces={false}>
                     <CardSlider
                         Title="Loan Amount"

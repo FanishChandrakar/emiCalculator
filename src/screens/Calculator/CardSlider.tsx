@@ -1,15 +1,22 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useDebounce} from '../../hooks';
+import Bar from './Bar';
 import Slider, {SliderProps} from './Slider';
 import styles from './styles';
 
+interface LabelProps {
+    Value: string;
+}
+const Label: React.FC<LabelProps> = ({Value}) => {
+    return <Text style={styles.cardSlider_Label}>{Value}</Text>;
+};
 interface CardSliderProps extends SliderProps {
     Title: string;
     Suffix: string;
     valueFormatter: (Value: number) => string;
 }
-const CardSlider = ({
+const CardSlider: React.FC<CardSliderProps> = ({
     Title,
     Suffix,
     valueFormatter,
@@ -20,23 +27,16 @@ const CardSlider = ({
     minLable,
     maxLable,
     onValueChange,
-}: CardSliderProps) => {
+}) => {
     const [Value, setValue] = React.useState(value);
     useDebounce(() => onValueChange(Value), 500, [Value]);
+
     return (
         <>
-            <View style={{...styles.VerticalSpace}} />
-            <View style={{...styles.cardSlider_Title_View}}>
-                <Text style={{...styles.cardSlider_Title_Text}}>{Title}</Text>
-                <Text
-                    style={{
-                        ...styles.cardSlider_Title_Text,
-                        ...styles.cardSlider_Title_Value,
-                    }}>
-                    {valueFormatter(Value)}
-                </Text>
-                <Text style={{...styles.cardSlider_Title_Text}}>{Suffix}</Text>
-            </View>
+            <View style={styles.VerticalSpace} />
+            <Bar {...{Title, Suffix}}>
+                <Label Value={valueFormatter(value)} />
+            </Bar>
             <Slider
                 {...{
                     value,
@@ -49,7 +49,7 @@ const CardSlider = ({
                 }}
                 onValueChange={val => setValue(val)}
             />
-            <View style={{...styles.lineSeperator}} />
+            <View style={styles.lineSeperator} />
         </>
     );
 };

@@ -7,12 +7,12 @@ interface CardProps {
     Value: string;
 }
 
-const Card = ({Tilte, Value}: CardProps) => {
+const Card: React.FC<CardProps> = ({Tilte, Value}) => {
     return (
-        <View style={{...styles.card_View}}>
-            <Text style={{...styles.card_Value}}>{Value}</Text>
-            <View style={{...styles.lineSeperator}} />
-            <Text style={{...styles.card_Title}}>{Tilte}</Text>
+        <View style={styles.card_View}>
+            <Text style={styles.card_Value}>{Value}</Text>
+            <View style={styles.lineSeperator} />
+            <Text style={styles.card_Title}>{Tilte}</Text>
         </View>
     );
 };

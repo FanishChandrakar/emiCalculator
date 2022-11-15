@@ -3,18 +3,20 @@ import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import Styles from '../Styles';
 import {Dimension, Colors} from '../utilities';
 
-interface propsType {
+interface HeaderProps {
     Title: string;
 }
-export default ({Title}: propsType) => {
+const Header: React.FC<HeaderProps> = ({Title}) => {
     return (
-        <SafeAreaView style={{...styles.container}}>
-            <View style={{...styles.header}}>
-                <Text style={{...styles.title}}>{Title}</Text>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <Text style={styles.title}>{Title}</Text>
             </View>
         </SafeAreaView>
     );
 };
+
+export default Header;
 
 const styles = StyleSheet.create({
     container: {

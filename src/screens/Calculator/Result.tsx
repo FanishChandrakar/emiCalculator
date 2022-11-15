@@ -10,22 +10,23 @@ interface ResultProps {
     Total: number;
 }
 
-const Result = ({EMI, Interest, Total}: ResultProps) => {
+const currencyConfig = {currencyPrefix: '₹'};
+const toLocaleCurrency = (val: number) =>
+    toCurrencyFormat.call(this, Math.round(val), currencyConfig);
+
+const Result: React.FC<ResultProps> = ({EMI, Interest, Total}) => {
     return (
-        <View style={{...styles.result}}>
-            <View style={{...styles.VerticalSpace}} />
-            <Card Tilte="Loan EMI" Value={`₹ ${toCurrencyFormat(Math.round(EMI))}`} />
-            <View style={{...styles.VerticalSpace}} />
-            <Card
-                Tilte="Total Interest Payable"
-                Value={`₹ ${toCurrencyFormat(Math.round(Interest))}`}
-            />
-            <View style={{...styles.VerticalSpace}} />
+        <View style={styles.result}>
+            <View style={styles.VerticalSpace} />
+            <Card Tilte="Loan EMI" Value={`${toLocaleCurrency(EMI)}`} />
+            <View style={styles.VerticalSpace} />
+            <Card Tilte="Total Interest Payable" Value={`${toLocaleCurrency(Interest)}`} />
+            <View style={styles.VerticalSpace} />
             <Card
                 Tilte="Total Payment (Principal + Interest)"
-                Value={`₹ ${toCurrencyFormat(Math.round(Total))}`}
+                Value={`${toLocaleCurrency(Total)}`}
             />
-            <View style={{...styles.VerticalSpace}} />
+            <View style={styles.VerticalSpace} />
             <SafeAreaView />
         </View>
     );
